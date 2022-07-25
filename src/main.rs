@@ -15,5 +15,7 @@ fn main() {
     sprint1::exercise3_1::is_valid(String::from("()"));
     unsafe { sprint1::exercise3_2::is_valid(String::from("()")) };
     sprint1::exercise4_1::remove_duplicates(&mut vec![1, 1, 2]);
+    unsafe { sprint1::exercise4_2::remove_duplicates(&mut vec![1, 1, 2]) };
     sprint1::exercise5_1::remove_element(&mut vec![3, 2, 2, 3], 3);
+    unsafe { sprint1::exercise4_2::remove_duplicates(&mut vec![1, 1, 2]) };
 }
