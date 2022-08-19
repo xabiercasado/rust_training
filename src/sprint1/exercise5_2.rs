@@ -1,14 +1,21 @@
-static mut NUMS: Option<&mut Vec<u32>> = None;
+static mut NUMS: Option<Vec<u32>> = None;
 static mut VAL: Option<u32> = None;
 static mut RESULT: Option<u32> = None;
 
+struct Solution {
+    nums: &mut Vec<u32>,
+    val: u32,
+    result: u32,
+}
+
 unsafe fn input(nums: &mut Vec<u32>, val: u32) {
-    NUMS = Some(&mut nums);
+    Solution.nums = nums;
     VAL = Some(val);
 }
 
 unsafe fn algorithm() {
-    let nums = NUMS.clone().unwrap();
+    let mut nums = NUMS.unwrap().iter().cloned().collect::<Vec<_>>();
+
     let val = VAL.clone().unwrap();
     let length = nums.len();
     let mut temp_length = 0;
@@ -22,6 +29,8 @@ unsafe fn algorithm() {
     }
     nums.resize(temp_length, 0);
     
+    NUMS = Some(nums);
+
     RESULT = Some(temp_length as u32);
     
     return;
@@ -32,7 +41,7 @@ unsafe fn output() -> u32 {
 }
 
 pub unsafe fn remove_element(nums: &mut Vec<u32>, val: u32) -> u32 {
-    input(nums, val);
+    input(&mut nums, val);
 
     algorithm();
 
